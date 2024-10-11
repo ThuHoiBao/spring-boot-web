@@ -19,4 +19,6 @@ public class BuildingSearchRequest {
     private String managerPhoneNumber;
     private Long staffId;
     private List<String> code;
+
+
 }
