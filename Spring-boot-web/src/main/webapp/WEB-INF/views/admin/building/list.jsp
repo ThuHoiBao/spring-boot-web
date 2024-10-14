@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/common/taglib.jsp" %>
 <html>
 <head>
 
@@ -42,7 +43,8 @@
         <!-- tim kiem toa nha -->
 
         <div class="row">
-            <form class="form-group" >
+            <form:form modelAttribute="modelSearch" action="/admin/building-list" method="GET" id="listForm">
+                <form class="form-group" >
                 <div class="col-sm-12 ">
                     <div class="widget-box">
                         <div class="widget-header" style="color:rgb(43, 170, 159); text-align: center;">
@@ -61,10 +63,11 @@
                         <div class="widget-body">
                             <div class="widget-main">
                                 <div class="row">
+
                                     <div class="form-group" >
 
                                         <!-- thong tin toa nha -->
-                                        <div class="col-xs-4">
+                                        <div class="col-xs-4 ">
                                             <div class="widget-box">
                                                 <div class="widget-header">
                                                     <h4 class="widget-title">Thông Tin Tòa Nhà</h4>
@@ -88,39 +91,46 @@
                                                                 <div class="col-xs-12">
 
                                                                     <label>Tên tòa nhà </label>
-                                                                    <input type="text" name=""
-                                                                           class="form-control"
-                                                                           placeholder="Nhập tên tòa nhà...">
+<%--                                                                    <input type="text" name="name" value="${modelSearch.name}"--%>
+<%--                                                                           class="form-control"--%>
+<%--                                                                           placeholder="Nhập tên tòa nhà...">--%>
+                                                                        <form:input class="form-control" path="name" placeholder="Nhập tên tòa nhà..."/>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-12">
                                                                 <hr>
                                                                 <div class="col-xs-6">
                                                                     <label>Quận</label>
-                                                                    <select name=""
-                                                                            class="form-control">
-                                                                        <option value="">---Chọn
-                                                                            quận---
-                                                                        </option>
-                                                                        <option value="">Quận 1
-                                                                        </option>
-                                                                        <option value="">Quận 2
-                                                                        </option>
-                                                                        <option value="">Quận
-                                                                            Thủ Đức
-                                                                        </option>
-                                                                        <option value="">Quận
-                                                                            Tân Bình
-                                                                        </option>
-                                                                    </select>
+<%--                                                                    <select name="districtId"--%>
+<%--                                                                            class="form-control">--%>
+<%--                                                                        <option value="">---Chọn--%>
+<%--                                                                            quận-----%>
+<%--                                                                        </option>--%>
+<%--                                                                        <option value="">Quận 1--%>
+<%--                                                                        </option>--%>
+<%--                                                                        <option value="">Quận 2--%>
+<%--                                                                        </option>--%>
+<%--                                                                        <option value="">Quận--%>
+<%--                                                                            Thủ Đức--%>
+<%--                                                                        </option>--%>
+<%--                                                                        <option value="">Quận--%>
+<%--                                                                            Tân Bình--%>
+<%--                                                                        </option>--%>
+<%--                                                                    </select>--%>
+                                                                        <form:select path="district" class="form-control">
+                                                                            <form:option value="" label="---Chọn Quận---"/>
+                                                                            <form:options items="${district}"/>
+                                                                        </form:select>
 
                                                                 </div>
                                                                 <div class="col-xs-6">
 
                                                                     <label>Phường</label>
-                                                                    <input type="text" name=""
-                                                                           class="form-control"
-                                                                           placeholder="Nhập tên phường...">
+<%--                                                                    <input type="text" name="ward"  value="${modelSearch.ward}"--%>
+<%--                                                                           class="form-control"--%>
+<%--                                                                           placeholder="Nhập tên phường...">--%>
+                                                                        <form:input class="form-control" path="ward" placeholder="Nhập tên phường..."/>
+
 
                                                                 </div>
                                                             </div>
@@ -130,9 +140,10 @@
                                                                 <div class="col-xs-12">
                                                                     <div>
                                                                         <label>Đường</label>
-                                                                        <input type="text" name=""
-                                                                               class="form-control"
-                                                                               placeholder="Nhập tên đường...">
+<%--                                                                        <input type="text" name="street"  value="${modelSearch.street}"--%>
+<%--                                                                               class="form-control"--%>
+<%--                                                                               placeholder="Nhập tên đường...">--%>
+                                                                        <form:input class="form-control" path="street" placeholder="Nhập tên đường..."/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -141,50 +152,26 @@
                                                                 <div class="col-xs-12">
                                                                     <div>
                                                                         <label>Hướng </label>
-                                                                        <input type="text" name=""
-                                                                               class="form-control"
-                                                                               placeholder="Nhập hướng...">
+<%--                                                                        <input type="text" name="direction"  value="${modelSearch.direction}"--%>
+<%--                                                                               class="form-control"--%>
+<%--                                                                               placeholder="Nhập hướng...">--%>
+                                                                        <form:input class="form-control" path="direction" placeholder="Nhập hướng..."/>
+
                                                                     </div>
                                                                 </div>
 
                                                             </div>
-                                                            <div class="col-xs-5">
+                                                            <div class="col-xs-12">
                                                                 <hr>
                                                                 <div class="control-group">
                                                                     <label
                                                                             class="control-label bolder blue"
-                                                                            style="margin-left: 10px; font-size:16px;">
-                                                                        Loại tòa nhà</label>
-                                                                    <div class="checkbox">
-                                                                        <label>
-                                                                            <input name="code"
-                                                                                   value="tang-tret"
-                                                                                   type="checkbox"
-                                                                                   class="ace">
-                                                                            <span class="lbl"> Tầng
-                                                                                                                Trệt</span>
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="checkbox">
-                                                                        <label>
-                                                                            <input name="code"
-                                                                                   value="nguyen-can"
-                                                                                   type="checkbox"
-                                                                                   class="ace">
-                                                                            <span class="lbl">
-                                                                                                                Nguyên Căn</span>
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="checkbox">
-                                                                        <label>
-                                                                            <input name="code"
-                                                                                   value="noi-that"
-                                                                                   class="ace"
-                                                                                   type="checkbox">
-                                                                            <span class="lbl">Nội
-                                                                                                                Thất </span>
-                                                                        </label>
-                                                                    </div>
+                                                                            style="margin-left: 10px;margin-right: 20px; font-size:16px;">
+                                                                        Loại tòa nhà   </label>
+
+                                                                        <form:checkboxes items="${renttype}" path="typeCode" />
+
+
                                                                 </div>
                                                             </div>
 
@@ -222,17 +209,21 @@
                                                                 <div class="col-xs-6">
                                                                     <div>
                                                                         <label>Diện tích sàn</label>
-                                                                        <input type="number" name=""
-                                                                               class="form-control"
-                                                                               placeholder="Nhập diện tích sàn...">
+<%--                                                                        <input type="number" name="floorArea"  value="${modelSearch.floorArea}"--%>
+<%--                                                                               class="form-control"--%>
+<%--                                                                               placeholder="Nhập diện tích sàn...">--%>
+                                                                        <form:input class="form-control" path="floorArea" placeholder="Nhập diện tích sàn..."/>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-xs-6">
                                                                     <div>
                                                                         <label>Số tầng hầm</label>
-                                                                        <input type="number" name=""
-                                                                               class="form-control"
-                                                                               placeholder="Nhập số tầng hầm...">
+<%--                                                                        <input type="number" name="numberOfBasement"  value="${modelSearch.numberOfBasement}"--%>
+<%--                                                                               class="form-control"--%>
+<%--                                                                               placeholder="Nhập số tầng hầm...">--%>
+                                                                        <form:input class="form-control" path="numberOfBasement" placeholder="Nhập số tầng hầm..."/>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -241,17 +232,21 @@
                                                                 <div class="col-xs-6">
                                                                     <div>
                                                                         <label>Diện tích từ</label>
-                                                                        <input type="number" name=""
-                                                                               class="form-control"
-                                                                               placeholder="Nhập diện tích từ...">
+<%--                                                                        <input type="number" name="areaRentStart"  value="${modelSearch.areaRentStart}"--%>
+<%--                                                                               class="form-control"--%>
+<%--                                                                               placeholder="Nhập diện tích từ...">--%>
+                                                                        <form:input class="form-control" path="areaRentStart" placeholder="Nhập diện tích từ..."/>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-xs-6">
                                                                     <div>
                                                                         <label>Diện tích đến</label>
-                                                                        <input type="number" name=""
-                                                                               class="form-control"
-                                                                               placeholder="Nhập diện tích đến...">
+<%--                                                                        <input type="number" name="areaRentFinish"  value="${modelSearch.areaRentFinish}"--%>
+<%--                                                                               class="form-control"--%>
+<%--                                                                               placeholder="Nhập diện tích đến...">--%>
+                                                                        <form:input class="form-control" path="areaRentFinish" placeholder="Nhập diện tích đến..."/>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -260,17 +255,21 @@
                                                                 <div class="col-xs-6">
                                                                     <div>
                                                                         <label>Giá tiền từ</label>
-                                                                        <input type="number" name=""
-                                                                               class="form-control"
-                                                                               placeholder="Nhập giá tiền từ...">
+<%--                                                                        <input type="number" name="priceRentStart"  value="${modelSearch.priceRentStart}"--%>
+<%--                                                                               class="form-control"--%>
+<%--                                                                               placeholder="Nhập giá tiền từ...">--%>
+                                                                        <form:input class="form-control" path="priceRentStart" placeholder="Nhập giá tiền từ..."/>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-xs-6">
                                                                     <div>
                                                                         <label>Giá tiền đến</label>
-                                                                        <input type="number" name=""
-                                                                               class="form-control"
-                                                                               placeholder="Nhập giá tiền đến...">
+<%--                                                                        <input type="number" name="priceRentFinish"  value="${modelSearch.priceRentFinish}"--%>
+<%--                                                                               class="form-control"--%>
+<%--                                                                               placeholder="Nhập giá tiền đến...">--%>
+                                                                            <form:input class="form-control" path="priceRentFinish" placeholder="Nhập giá tiền đến..."/>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -280,9 +279,11 @@
                                                                 <div class="col-xs-12">
                                                                     <div>
                                                                         <label>Hạng</label>
-                                                                        <input type="text" name=""
-                                                                               class="form-control"
-                                                                               placeholder="Nhập hạng...">
+<%--                                                                        <input type="text" name="level"  value="${modelSearch.level}"--%>
+<%--                                                                               class="form-control"--%>
+<%--                                                                               placeholder="Nhập hạng...">--%>
+                                                                            <form:input class="form-control" path="level" placeholder="Nhập hạng...."/>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -337,9 +338,11 @@
                                                                 <div class="col-xs-12">
                                                                     <label>Tên người quản
                                                                         lí</label>
-                                                                    <input type="text" name=""
-                                                                           class="form-control"
-                                                                           placeholder="Nhập tên người quản lí...">
+<%--                                                                    <input type="text" name="managerName"  value="${modelSearch.managerName}"--%>
+<%--                                                                           class="form-control"--%>
+<%--                                                                           placeholder="Nhập tên người quản lí...">--%>
+                                                                            <form:input class="form-control" path="managerName" placeholder="Nhập tên người quản lí..."/>
+
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-12">
@@ -347,9 +350,11 @@
                                                                     <hr>
                                                                     <label>SĐT người quản
                                                                         lí</label>
-                                                                    <input type="text" name=""
-                                                                           class="form-control"
-                                                                           placeholder="Nhập sđt người quản lí...">
+<%--                                                                    <input type="text" name="managerPhoneNumber"  value="${modelSearch.managerPhoneNumber}"--%>
+<%--                                                                           class="form-control"--%>
+<%--                                                                           placeholder="Nhập sđt người quản lí...">--%>
+                                                                            <form:input class="form-control" path="managerPhoneNumber" placeholder="Nhập sđt người quản lí..."/>
+
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-12">
@@ -357,22 +362,27 @@
                                                                     <hr>
                                                                     <label>Nhân viên phụ
                                                                         trách</label>
-                                                                    <select name="" id=""
-                                                                            class="form-control">
-                                                                        <option value="">---Chọn
-                                                                            nhân
-                                                                            viên---</option>
-                                                                        <option value="">Trần
-                                                                            Anh Thư
-                                                                        </option>
-                                                                        <option value="">Hoàng
-                                                                            Thị Thanh
-                                                                            Tuyền</option>
-                                                                        <option value="">Nguyễn
-                                                                            Minh
-                                                                            Nhật</option>
+<%--                                                                    <select name="staffId" id=""--%>
+<%--                                                                            class="form-control">--%>
+<%--                                                                        <option value="1">---Chọn--%>
+<%--                                                                            nhân--%>
+<%--                                                                            viên---</option>--%>
+<%--                                                                        <option value="2">Trần--%>
+<%--                                                                            Anh Thư--%>
+<%--                                                                        </option>--%>
+<%--                                                                        <option value="3">Hoàng--%>
+<%--                                                                            Thị Thanh--%>
+<%--                                                                            Tuyền</option>--%>
+<%--                                                                        <option value="4">Nguyễn--%>
+<%--                                                                            Minh--%>
+<%--                                                                            Nhật</option>--%>
 
-                                                                    </select>
+<%--                                                                    </select>--%>
+                                                                        <form:select path="staffId" class="form-control">
+                                                                            <form:option value="" label="---Chọn Nhân Viên---"/>
+                                                                            <form:options items="${staffs}"/>
+                                                                        </form:select>
+
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-12">
@@ -401,10 +411,11 @@
                                         </div><!-- /.span -->
 
                                     </div>
+
                                     <div class="form-group" >
                                         <div class="col-xs-12">
                                             <br>
-                                            <button class="btn btn-sm btn-primary">
+                                            <button class="btn btn-sm btn-primary" id="btnSearchBuilding" type="button">
                                                 <i class="ace-icon glyphicon glyphicon-search"></i>
                                                 Tìm kiếm
                                             </button>
@@ -418,33 +429,35 @@
                     <div class="col-sm-12">
                         <div class="pull-right">
 
-
-                            <button class="btn btn-app btn-primary btn-sm" title="Thêm tòa nhà">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                     fill="currentColor" class="bi bi-building-fill-add"
-                                     viewBox="0 0 16 16">
-                                    <path
-                                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0" />
-                                    <path
-                                            d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7.256A4.5 4.5 0 0 0 12.5 8a4.5 4.5 0 0 0-3.59 1.787A.5.5 0 0 0 9 9.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .39-.187A4.5 4.5 0 0 0 8.027 12H6.5a.5.5 0 0 0-.5.5V16H3a1 1 0 0 1-1-1zm2 1.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-app btn-danger btn-sm" title="Xóa tòa nhà">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                     fill="currentColor" class="bi bi-building-dash" viewBox="0 0 16 16">
-                                    <path
-                                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1" />
-                                    <path
-                                            d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6.5a.5.5 0 0 1-1 0V1H3v14h3v-2.5a.5.5 0 0 1 .5-.5H8v4H3a1 1 0 0 1-1-1z" />
-                                    <path
-                                            d="M4.5 2a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z" />
-                                </svg>
-                            </button>
+                            <a href="/admin/building-edit">
+                                <button class="btn btn-app btn-primary btn-sm" title="Thêm tòa nhà" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                         fill="currentColor" class="bi bi-building-fill-add"
+                                         viewBox="0 0 16 16">
+                                        <path
+                                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0" />
+                                        <path
+                                                d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7.256A4.5 4.5 0 0 0 12.5 8a4.5 4.5 0 0 0-3.59 1.787A.5.5 0 0 0 9 9.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .39-.187A4.5 4.5 0 0 0 8.027 12H6.5a.5.5 0 0 0-.5.5V16H3a1 1 0 0 1-1-1zm2 1.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z" />
+                                    </svg>
+                                </button>
+                            </a>
+                                <button class="btn btn-app btn-danger btn-sm" title="Xóa tòa nhà">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                         fill="currentColor" class="bi bi-building-dash" viewBox="0 0 16 16">
+                                        <path
+                                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1" />
+                                        <path
+                                                d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6.5a.5.5 0 0 1-1 0V1H3v14h3v-2.5a.5.5 0 0 1 .5-.5H8v4H3a1 1 0 0 1-1-1z" />
+                                        <path
+                                                d="M4.5 2a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z" />
+                                    </svg>
+                                </button>
                         </div>
 
                     </div>
                 </div>
             </form>
+            </form:form>
         </div>
         <div class="hr hr-20 dotted hr-double"></div>
         <!-- danh sach toa nha -->
@@ -594,6 +607,12 @@
     function assingmentBuilding() {
         $('#assingmentBuildingModel').modal();
     }
+
+    $('#btnSearchBuilding').click(function (e){
+        e.preventDefault();
+        $('#listForm').submit();
+    })
 </script>
+
 </body>
 </html>

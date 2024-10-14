@@ -1,6 +1,7 @@
 package com.javaweb.service.impl;
 
 import com.javaweb.converter.RoleConverter;
+import com.javaweb.entity.UserEntity;
 import com.javaweb.model.dto.RoleDTO;
 import com.javaweb.entity.RoleEntity;
 import com.javaweb.repository.RoleRepository;
@@ -8,10 +9,7 @@ import com.javaweb.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class RoleService implements IRoleService {
@@ -42,4 +40,6 @@ public class RoleService implements IRoleService {
 		}
 		return roleTerm;
 	}
+
+	
 }

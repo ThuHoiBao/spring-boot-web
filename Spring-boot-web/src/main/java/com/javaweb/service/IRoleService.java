@@ -1,5 +1,6 @@
 package com.javaweb.service;
 
+import com.javaweb.entity.UserEntity;
 import com.javaweb.model.dto.RoleDTO;
 
 import java.util.List;

@@ -1,11 +1,16 @@
 package com.javaweb.model.request;
 
-import java.util.List;
+import com.javaweb.model.dto.AbstractDTO;
+import lombok.Getter;
+import lombok.Setter;
 
-public class BuildingSearchRequest {
+import java.util.List;
+@Getter
+@Setter
+public class BuildingSearchRequest extends AbstractDTO {
     private String name ;
     private Long floorArea;
-    private Long districtId;
+    private String district;
     private String ward;
     private String street;
     private String direction;
@@ -18,7 +23,5 @@ public class BuildingSearchRequest {
     private String managerName;
     private String managerPhoneNumber;
     private Long staffId;
-    private List<String> code;
-
-
+    private List<String> typeCode;
 }
