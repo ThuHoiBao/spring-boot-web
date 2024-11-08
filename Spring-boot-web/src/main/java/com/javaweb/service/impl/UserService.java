@@ -2,11 +2,16 @@ package com.javaweb.service.impl;
 
 import com.javaweb.constant.SystemConstant;
 import com.javaweb.converter.UserConverter;
+import com.javaweb.entity.AssignmentBuildingEntity;
+import com.javaweb.entity.BuildingEntity;
 import com.javaweb.model.dto.PasswordDTO;
 import com.javaweb.model.dto.UserDTO;
 import com.javaweb.entity.RoleEntity;
 import com.javaweb.entity.UserEntity;
 import com.javaweb.exception.MyException;
+import com.javaweb.model.response.ResponseDTO;
+import com.javaweb.model.response.StaffResponse;
+import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.RoleRepository;
 import com.javaweb.repository.UserRepository;
 import com.javaweb.service.IUserService;
@@ -37,6 +42,8 @@ public class UserService implements IUserService {
     @Autowired
     private UserConverter userConverter;
 
+    @Autowired
+    private BuildingRepository buildingRepository;
 
 
     @Override
@@ -81,8 +88,6 @@ public class UserService implements IUserService {
     public int countTotalItems() {
         return userRepository.countTotalItem();
     }
-
-
 
     @Override
     public int getTotalItems(String searchValue) {
@@ -184,6 +189,37 @@ public class UserService implements IUserService {
             staffs.put(userEntity.getId(),userEntity.getUserName());
         }
         return staffs;
+    }
+    @Override
+    public Object loadStaffs(Long idBuilding) {
+        List<UserEntity> userEntities = userRepository.findByStatusAndRoles_Code(1, "STAFF");
+
+        BuildingEntity building = buildingRepository.findById(idBuilding).orElse(null);
+        if (building == null) {
+            return Collections.emptyList();
+        }
+        List<UserEntity> assignedStaffs = building.getAssignmentBuildingEntities()
+                .stream()
+                .map(AssignmentBuildingEntity::getUserEntity)
+                .collect(Collectors.toList());
+        List<StaffResponse> staffResponses = new ArrayList<>();
+        for (UserEntity userEntity : userEntities) {
+            StaffResponse staffResponse = new StaffResponse();
+            staffResponse.setStaffId(userEntity.getId());
+            staffResponse.setUserName(userEntity.getUserName());
+
+            // Kiểm tra xem nhân viên có nằm trong danh sách nhân viên đã gán không
+            if (assignedStaffs.contains(userEntity)) {
+                staffResponse.setChecked("checked");
+            } else {
+                staffResponse.setChecked(" ");
+            }
+            staffResponses.add(staffResponse);
+        }
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setData(staffResponses);
+        responseDTO.setMessage("success");
+        return responseDTO;
     }
 
 }
